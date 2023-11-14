@@ -1,0 +1,11 @@
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\bin\Debug\kapatma zamanlayici.exe.config
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\bin\Debug\kapatma zamanlayici.exe
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\bin\Debug\kapatma zamanlayici.pdb
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\obj\Debug\kapatma zamanlayici.csproj.AssemblyReference.cache
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\obj\Debug\kapatma_zamanlayici.Form1.resources
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\obj\Debug\kapatma_zamanlayici.Properties.Resources.resources
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\obj\Debug\kapatma zamanlayici.csproj.GenerateResource.cache
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\obj\Debug\kapatma zamanlayici.csproj.CoreCompileInputs.cache
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\obj\Debug\kapatma zamanlayici.exe
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\obj\Debug\kapatma zamanlayici.pdb
+C:\Users\musta\source\repos\kapatma zamanlayici\kapatma zamanlayici\obj\Debug\kapatma_zamanlayici.Form2.resources
