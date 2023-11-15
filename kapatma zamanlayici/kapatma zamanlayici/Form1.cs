@@ -76,29 +76,12 @@ namespace kapatma_zamanlayici
                 {
                     label7.Text = $"{timeDifference.Hours:00}:{timeDifference.Minutes:00}:{timeDifference.Seconds:00}";
                 });
-                if (timeDifference.TotalSeconds <= 600 && timeDifference.TotalSeconds > 0 && !son10DakikaUyariGosterildi)
+                if (timeDifference.TotalSeconds <= 600 && timeDifference.TotalSeconds > 0 && son10DakikaUyariGosterildi == false)
                 {
                    
                         son10DakikaUyariGosterildi = true; // Bayrağı true olarak ayarla, böylece bir daha gösterilmez
-                    switch (kapatmamod)
-                    {
-                        case "yb":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Yeniden Başlatılacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "ok":
-                            MessageBox.Show("10 Dakika Sonra Oturumunuz Kapatılcak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "hb":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Hazırda Bekletme Moduna Alınacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "u":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Uyku Moduna Alınacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "kapat":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Kapatılacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                            // Diğer durumları ekleyebilirsiniz.
-                    }
+                    switchmod();
+
                 }
             }
             else
@@ -106,28 +89,10 @@ namespace kapatma_zamanlayici
                 timer1.Stop();
                 label7.Text = "Bye";
                 label3.Text = @"";
-                switch (kapatmamod)
-                {
-                    case "yb":
-                        Process.Start("shutdown", "/r /t 0");
-                        break;
-                    case "ok":
-                        Process.Start("shutdown", "/l /f"); // Oturumu kapatma komutu
-                        break;
-                    case "hb":
-                        BekletmeModunaAl();
-                        break;
-                    case "u":
-                        Application.SetSuspendState(PowerState.Suspend, true, true);
-                        break;
-                    case "kapat":
-                        System.Diagnostics.Process.Start("shutdown", "/s /t 0");
-                        break;
-                        // Diğer durumları ekleyebilirsiniz.
+                switchmodkapatma();
 
-                }
             }
-           
+
 
 
         }
@@ -142,28 +107,11 @@ namespace kapatma_zamanlayici
                 kalanSaniye--;
 
                 TimeSpan sure = TimeSpan.FromSeconds(kalanSaniye);
-                if (kalanSaniye <= 600 && kalanSaniye> 0 && !son10DakikaUyariGosterildi)
+                if (kalanSaniye <= 600 && kalanSaniye> 0 && son10DakikaUyariGosterildi == false)
                 {
                     son10DakikaUyariGosterildi = true; // Bayrağı true olarak ayarla, böylece bir daha gösterilmez
-                    switch (kapatmamod)
-                    {
-                        case "yb":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Yeniden Başlatılacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "ok":
-                            MessageBox.Show("10 Dakika Sonra Oturumunuz Kapatılcak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "hb":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Hazırda Bekletme Moduna Alınacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "u":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Uyku Moduna Alınacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "kapat":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Kapatılacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                            // Diğer durumları ekleyebilirsiniz.
-                    }
+                    switchmod();
+
                 }
                 // Form üzerinde güncelleme yapmak için Invoke kullanılıyor
                 this.Invoke((MethodInvoker)delegate
@@ -176,27 +124,8 @@ namespace kapatma_zamanlayici
                 timer2.Stop(); // Geri sayım bittiğinde timer durduruluyor
                 label7.Text = "Bye";
                 label3.Text = @"";
+                switchmodkapatma();
 
-                switch (kapatmamod)
-                {
-                    case "yb":
-                        Process.Start("shutdown", "/r /t 0");
-                        break;
-                    case "ok":
-                        Process.Start("shutdown", "/l /f"); // Oturumu kapatma komutu
-                        break;
-                    case "hb":
-                        BekletmeModunaAl();
-                        break;
-                    case "u":
-                        Application.SetSuspendState(PowerState.Suspend, true, true);
-                        break;
-                    case "kapat":
-                        System.Diagnostics.Process.Start("shutdown", "/s /t 0");
-                        break;
-                        // Diğer durumları ekleyebilirsiniz.
-
-                }
             }
         }
         private void Timer3_Tick(object sender, EventArgs e)
@@ -213,29 +142,11 @@ namespace kapatma_zamanlayici
                 int saat = sure.Hours;
                 int dakika = sure.Minutes;
                 int saniye = sure.Seconds;
-                if (toplamSaniye <= 600 && toplamSaniye> 0 && !son10DakikaUyariGosterildi)
+                if (toplamSaniye <= 600 && toplamSaniye> 0 && son10DakikaUyariGosterildi==false)
                 {
                     son10DakikaUyariGosterildi = true; // Bayrağı true olarak ayarla, böylece bir daha gösterilmez
-
-                    switch (kapatmamod)
-                    {
-                        case "yb":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Yeniden Başlatılacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "ok":
-                            MessageBox.Show("10 Dakika Sonra Oturumunuz Kapatılcak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "hb":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Hazırda Bekletme Moduna Alınacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "u":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Uyku Moduna Alınacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                        case "kapat":
-                            MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Kapatılacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            break;
-                            // Diğer durumları ekleyebilirsiniz.
-                    }
+                    switchmod();
+                   
                 }
                 // Sonucu label'a yazdır
                 label7.Text = $"{saat}:{dakika}:{saniye}";
@@ -244,26 +155,56 @@ namespace kapatma_zamanlayici
             {
                 timer3.Stop(); // Zaman dolduğunda timer'ı durdur
                 label7.Text = "Bye";
-                switch (kapatmamod)
-                {
-                    case "yb":
-                        Process.Start("shutdown", "/r /t 0");
-                        break;
-                    case "ok":
-                        Process.Start("shutdown", "/l /f"); // Oturumu kapatma komutu
-                        break;
-                    case "hb":
-                        BekletmeModunaAl();
-                        break;
-                    case "u":
-                        Application.SetSuspendState(PowerState.Suspend, true, true);
-                        break;
-                    case "kapat":
-                        System.Diagnostics.Process.Start("shutdown", "/s /t 0");
-                        break;
-                        // Diğer durumları ekleyebilirsiniz.
+                switchmodkapatma();
+            }
+        }
 
-                }
+        private void switchmod()
+        {
+
+            switch (kapatmamod)
+            {
+                case "yb":
+                    MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Yeniden Başlatılacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    break;
+                case "ok":
+                    MessageBox.Show("10 Dakika Sonra Oturumunuz Kapatılcak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    break;
+                case "hb":
+                    MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Hazırda Bekletme Moduna Alınacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    break;
+                case "u":
+                    MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Uyku Moduna Alınacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    break;
+                default:
+                    MessageBox.Show("Kişisel Bilgisayarınız 10 Dakika Sonra Kapatılacak.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    break;
+                    // Diğer durumları ekleyebilirsiniz.
+            }
+        }
+
+
+        private void switchmodkapatma()
+        {
+            switch (kapatmamod)
+            {
+                case "yb":
+                    Process.Start("shutdown", "/r /t 0");
+                    break;
+                case "ok":
+                    Process.Start("shutdown", "/l /f"); // Oturumu kapatma komutu
+                    break;
+                case "hb":
+                    BekletmeModunaAl();
+                    break;
+                case "u":
+                    Application.SetSuspendState(PowerState.Suspend, true, true);
+                    break;
+                default:
+                    Process.Start("shutdown", "/s /t 0");
+                    break;
+                    // Diğer durumları ekleyebilirsiniz.
+
             }
         }
         static void BekletmeModunaAl()
@@ -303,6 +244,7 @@ namespace kapatma_zamanlayici
         }
 
 
+      
         private void basla_Click(object sender, EventArgs e)
         {
 
